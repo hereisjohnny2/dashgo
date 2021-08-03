@@ -1,16 +1,22 @@
-import { Checkbox, Table, Tbody, Th, Thead, Tr } from "@chakra-ui/react";
+import { Checkbox, Table, Tbody, Th, Thead, Tr, useBreakpointValue } from "@chakra-ui/react";
 import { UserItem } from "./UserItem";
 
 export function UsersList() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
+  
+
   return(
     <Table colorScheme="whiteAlpha">
       <Thead>
         <Tr>
-          <Th px="6" color="gray.300" w="8">
+          <Th px={["4", "4", "6"]} color="gray.300" w="8">
             <Checkbox colorScheme="pink" />
           </Th>
           <Th>Usuário</Th>
-          <Th>Data de Cadastro</Th>
+          { isWideVersion && <Th>Data de Cadastro</Th> }
           <Th w="8"></Th>
         </Tr>
       </Thead>

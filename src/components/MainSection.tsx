@@ -12,14 +12,14 @@ export function MainSection({ children }: MainSectionProps) {
     <Box>
       <Header />
       <Flex
-        w="100%"
+        w="100vw"
         maxWidth={1480}
         my="6"
         mx="auto"
-        px="6"
+        px={["0", "6"]}
       >
         <Sidebar/>
-        <Box flex="1" borderRadius={8} bgColor="gray.800" p="8">
+        <Box flex="1" borderRadius={8} bgColor="gray.800" py="8" px={["4", "8"]} mx={["2", "0"]}> 
           {children}
         </Box>
       </Flex> 

@@ -1,4 +1,4 @@
-import { Box, Checkbox, Td, Text, Tr } from "@chakra-ui/react";
+import { Box, Checkbox, Td, Text, Tr, useBreakpointValue } from "@chakra-ui/react";
 import { EditUserButton } from "./EditUserButon";
 
 interface UserItemProps {
@@ -8,9 +8,14 @@ interface UserItemProps {
 }
 
 export function UserItem({ name, email, createdAt }: UserItemProps) {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
+
   return(
     <Tr>
-      <Td px="6">
+      <Td px={["4", "4", "6"]}>
         <Checkbox colorScheme="pink" />
       </Td>
       <Td>
@@ -19,9 +24,9 @@ export function UserItem({ name, email, createdAt }: UserItemProps) {
           <Text fontSize="sm" color="gray.300">{email}</Text>
         </Box>
       </Td>
-      <Td>{createdAt}</Td>
+      {isWideVersion && <Td>{createdAt}</Td>}
       <Td>
-        <EditUserButton />
+        {isWideVersion && <EditUserButton />}
       </Td>
     </Tr>
   );

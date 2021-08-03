@@ -1,4 +1,4 @@
-import { Button, Icon } from "@chakra-ui/react";
+import { Button, Icon, useBreakpointValue } from "@chakra-ui/react";
 import { RiPencilLine } from "react-icons/ri";
 
 export function EditUserButton() {

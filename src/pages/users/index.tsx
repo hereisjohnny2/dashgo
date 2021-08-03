@@ -1,4 +1,4 @@
-import { Button, Flex, Icon} from "@chakra-ui/react";
+import { Button, Flex, Icon } from "@chakra-ui/react";
 import { RiAddLine } from "react-icons/ri";
 import { MainSection } from "../../components/MainSection";
 import { Pagination } from "../../components/Pagination";
