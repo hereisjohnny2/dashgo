@@ -5,7 +5,7 @@ import { Pagination } from "../../components/Pagination";
 import { SectionHeading } from "../../components/SectionHeading";
 import { UsersList } from "../../components/UsersList";
 
-export default function UserList() {
+export default function Users() {
   return (
     <MainSection>
       <Flex mb="8" justify="space-between" align="center">
