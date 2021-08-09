@@ -15,7 +15,7 @@ type User = {
 }
 
 export default function Users() {
-  const { data, isLoading, error } = useQuery("users", async () => {
+  const { data, isLoading, error, isFetching } = useQuery("users", async () => {
     const response = await fetch("http://localhost:3000/api/users");
     const data = await response.json();
 
@@ -40,7 +40,10 @@ export default function Users() {
   return (
     <MainSection>
       <Flex mb="8" justify="space-between" align="center">
-        <SectionHeading title="Usuários"/>
+        <SectionHeading 
+          title="Usuários"
+          isFetching={!isLoading && isFetching}
+        />
         <Link href="/users/create" passHref>
           <Button 
             as="a" 
