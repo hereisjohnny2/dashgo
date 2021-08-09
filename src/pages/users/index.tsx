@@ -1,16 +1,19 @@
-import { Button, Flex, Icon } from "@chakra-ui/react";
+import { Button, Flex, Icon, Spinner, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import { useEffect } from "react";
 import { RiAddLine } from "react-icons/ri";
 import { MainSection } from "../../components/MainSection";
 import { Pagination } from "../../components/Pagination";
 import { SectionHeading } from "../../components/SectionHeading";
 import { UsersList } from "../../components/UsersList";
+import { useQuery } from "react-query";
 
 export default function Users() {
-  useEffect(() => {
-    const users = fetch("http://localhost:3000/api/users");    
-  }, []);
+  const { data, isLoading, error } = useQuery("users", async () => {
+    const response = await fetch("http://localhost:3000/api/users");
+    const data = await response.json();
+
+    return data;
+  });
   
   return (
     <MainSection>
@@ -28,8 +31,26 @@ export default function Users() {
           </Button>
         </Link>
       </Flex>
-      <UsersList />
-      <Pagination />
+      {
+        isLoading ? (
+          <Flex
+            justify="center"
+          >
+            <Spinner />
+          </Flex>
+        ) : error ? (
+          <Flex
+            justify="center"
+          >
+            <Text>Falha ao carregar os usuários!</Text>
+          </Flex>
+        ) : (
+          <>
+            <UsersList />
+            <Pagination />
+          </>
+        )
+      }
     </MainSection>
   );
 }

@@ -1,12 +1,15 @@
 import { Checkbox, Table, Tbody, Th, Thead, Tr, useBreakpointValue } from "@chakra-ui/react";
 import { UserItem } from "./UserItem";
+import { useQuery } from 'react-query';
 
 export function UsersList() {
+  
+  
+    
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
-  });
-  
+  });  
 
   return(
     <Table colorScheme="whiteAlpha">
