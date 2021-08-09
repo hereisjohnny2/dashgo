@@ -2,14 +2,22 @@ import { Checkbox, Table, Tbody, Th, Thead, Tr, useBreakpointValue } from "@chak
 import { UserItem } from "./UserItem";
 import { useQuery } from 'react-query';
 
-export function UsersList() {
-  
-  
+interface UsersListProps {
+  users: Array<{
+    id: number,
+    name: string,
+    email: string,
+    createdAt: string,
+  }>
+}
+
+export function UsersList({ users }: UsersListProps) {
     
   const isWideVersion = useBreakpointValue({
     base: false,
     lg: true,
-  });  
+  }); 
+  
 
   return(
     <Table colorScheme="whiteAlpha">
@@ -24,16 +32,18 @@ export function UsersList() {
         </Tr>
       </Thead>
       <Tbody>
-        <UserItem 
-          name="Joao Marcelo"
-          email="carvalho.joaomc@gmail.com"
-          createdAt="02 de Agosto de 2021"
-        />
-        <UserItem 
-          name="Joao Marcelo"
-          email="carvalho.joaomc@gmail.com"
-          createdAt="02 de Agosto de 2021"
-        />
+        {
+          users.map(user => {
+            return(
+              <UserItem 
+                key={user.id}
+                name={user.name}
+                email={user.email}
+                createdAt={user.createdAt}
+              />
+            )
+          })
+        }
       </Tbody>
     </Table>
   );

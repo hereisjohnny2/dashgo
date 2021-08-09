@@ -7,12 +7,32 @@ import { SectionHeading } from "../../components/SectionHeading";
 import { UsersList } from "../../components/UsersList";
 import { useQuery } from "react-query";
 
+type User = {
+  id: number;
+  name: string;
+  email: string;
+  createdAt: string;
+}
+
 export default function Users() {
   const { data, isLoading, error } = useQuery("users", async () => {
     const response = await fetch("http://localhost:3000/api/users");
     const data = await response.json();
 
-    return data;
+    const users = data.users.map((user: User) => {
+     return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      createdAt: new Date(user.createdAt).toLocaleDateString("pt-BR", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+      })
+     }
+    });
+
+    return users;
   });
   
   return (
@@ -22,7 +42,7 @@ export default function Users() {
         <Link href="/users/create" passHref>
           <Button 
             as="a" 
-            size="sm" 
+            size="sm"  
             fontSize="small" 
             colorScheme="pink" 
             leftIcon={<Icon as={RiAddLine} fontSize="20" />}
@@ -46,7 +66,7 @@ export default function Users() {
           </Flex>
         ) : (
           <>
-            <UsersList />
+            <UsersList users={data}/>
             <Pagination />
           </>
         )
