@@ -1,5 +1,6 @@
 import { Button, Flex, Icon, Spinner, Text } from "@chakra-ui/react";
 import Link from "next/link";
+import { useState } from "react";
 import { RiAddLine } from "react-icons/ri";
 import { MainSection } from "../../components/MainSection";
 import { Pagination } from "../../components/Pagination";
@@ -8,8 +9,10 @@ import { UsersList } from "../../components/UsersList";
 import { useUsers } from "../../services/hooks/users/useUsers";
 
 export default function Users() {
-  const { data, isLoading, error, isFetching } = useUsers();
+  const [page, setPage] = useState(1);
+  const { data, isLoading, error, isFetching } = useUsers(page);
   
+
   return (
     <MainSection>
       <Flex mb="8" justify="space-between" align="center">
@@ -44,11 +47,11 @@ export default function Users() {
           </Flex>
         ) : (
           <>
-            <UsersList users={data}/>
+            <UsersList users={data?.users}/>
             <Pagination
-              totalCountOfRegisters={200}
-              currentPage={10}
-              onPageChange={() => {}}
+              totalCountOfRegisters={data.totalCount}
+              currentPage={page}
+              onPageChange={setPage}
             />
           </>
         )
