@@ -1,6 +1,5 @@
 import { Checkbox, Table, Tbody, Th, Thead, Tr, useBreakpointValue } from "@chakra-ui/react";
 import { UserItem } from "./UserItem";
-import { useQuery } from 'react-query';
 
 interface UsersListProps {
   users: Array<{
@@ -8,7 +7,7 @@ interface UsersListProps {
     name: string,
     email: string,
     createdAt: string,
-  }>
+  }> | undefined
 }
 
 export function UsersList({ users }: UsersListProps) {
@@ -33,7 +32,7 @@ export function UsersList({ users }: UsersListProps) {
       </Thead>
       <Tbody>
         {
-          users.map(user => {
+          users?.map(user => {
             return(
               <UserItem 
                 key={user.id}
