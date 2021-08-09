@@ -2,7 +2,7 @@ import { Heading, Spinner } from "@chakra-ui/react";
 
 interface SectionHeadingProps {
   title: string;
-  isFetching: boolean
+  isFetching?: boolean
 }
 
 export function SectionHeading({ title, isFetching = false }: SectionHeadingProps) {
