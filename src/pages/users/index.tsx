@@ -33,6 +33,8 @@ export default function Users() {
     });
 
     return users;
+  }, {
+    staleTime: 1000 * 5 // 5 segundos 
   });
   
   return (
