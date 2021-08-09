@@ -54,6 +54,7 @@ export function makeServer() {
           { users: parsedUsers }
         )
       });
+      this.get("/users/:id");
       this.post("/users");
 
       // Voltando o namespace para nulo para não prejudicar a rota api do next 

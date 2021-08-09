@@ -36,6 +36,7 @@ export function UsersList({ users }: UsersListProps) {
             return(
               <UserItem 
                 key={user.id}
+                id={user.id}
                 name={user.name}
                 email={user.email}
                 createdAt={user.createdAt}
